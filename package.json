@@ -1,0 +1,19 @@
+{
+  "name": "mineflayer-melee",
+  "version": "0.0.1",
+  "description": "Simulate legitimate player combat with mineflayer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firejoust/mineflayer-melee.git"
+  },
+  "author": "firejoust",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firejoust/mineflayer-melee/issues"
+  },
+  "homepage": "https://github.com/firejoust/mineflayer-melee#readme"
+}
