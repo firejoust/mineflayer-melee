@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/firejoust/mineflayer-melee/issues"
   },
-  "homepage": "https://github.com/firejoust/mineflayer-melee#readme"
+  "homepage": "https://github.com/firejoust/mineflayer-melee#readme",
+  "dependencies": {
+    "line3": "^0.0.8",
+    "vec3": "^0.1.7"
+  }
 }

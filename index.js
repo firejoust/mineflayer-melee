@@ -1,44 +1,65 @@
-/*
-    acceleration - applies when target is lost
-    velocity - resets when target is lost
-*/
-
 class Melee {
-    constructor(client, velocity, acceleration) {
+    constructor(client, acceleration, chance) {
         this.client = client
-        this.velocity = velocity
         this.acceleration = acceleration
+        this.chance = chance
 
-        // keep track of angular velocity/acceleration
-        this.#VELOCITY = 0
-        this.#ACCELERATION = 0
+        // keep track of angular velocity
+        this.#VELOCITY = new Float64Array(2)
     }
 
-    swing(entity) {
+    swing(entity, hand) {
         // get angle where player is facing
-        let x0, y0
-        x0 = Math.cos(this.client.entity.pitch)
-        y0 = Math.sin(this.client.entity.pitch)
+        let initial = new Float64Array(2)
+        initial[1]  = this.client.entity.pitch + Math.PI
+        initial[0]  = this.client.entity.yaw + Math.PI
 
         // get angle where player needs to face
-        let x1, y1
-        let distance = entity.position.distanceTo(this.client.entity.position)
-        x1 = Math.sqrt(
-            (entity.position.x - this.client.entity.position.x) ** 2,
-            (entity.position.z - this.client.entity.position.z) ** 2
-        ) / distance
-        y1 = (entity.position.y - this.client.entity.position.y) / distance
+        let target = new Float64Array(2)
+        target[1]  = Math.asin(entity.position.y - this.client.entity.position.y)
+        target[0]  = Math.atan2(
+            (entity.position.z - this.client.entity.position.z),
+            (entity.position.x - this.client.entity.position.x)
+        )
 
-        // find their difference
-        let x2, y2
-        x2 = x1 - x0
-        y2 = y1 - y0
-        /*
-            1. get angle where player is looking
-            2. get angle where player needs to face
-            3. find difference between the two
-            4. see if current velocity covers the angle difference
-        */
+        // get angle difference between the two
+        let difference = new Float64Array(2)
+        difference[1]  = target[1] - initial[1]
+        difference[0]  = target[0] - initial[0]
 
+        // update the angular velocity
+        this.#VELOCITY[1] += this.acceleration * Math.sign(difference[1])
+        this.#VELOCITY[0] += this.acceleration * Math.sign(difference[0])
+
+        // initialise the final angle
+        let final = new Float64Array(2)
+        final[1]  = initial[1] + this.#VELOCITY[1]
+        final[0]  = initial[0] + this.#VELOCITY[0]
+
+        // velocity can cover the distance
+        // actually this won't work. (velocity has a direction, only if it covers distance in a certain direction will it work)
+        if (Math.abs(this.#VELOCITY[1]) > Math.abs(difference[1]))
+        {
+            final[1] = target[1]
+            this.#VELOCITY[1] = 0
+        }
+
+        if (Math.abs(this.#VELOCITY[0]) > Math.abs(difference[0]))
+        {
+            final[0] = target[0]
+            this.#VELOCITY[0] = 0
+        }
+
+        this.client.look(
+            final[0] - Math.PI,
+            final[1] - Math.PI
+        )
+
+        // simulate an attack
+        if (Math.random() < this.chance) {
+            this.client.swingArm(hand)
+
+            // if raycast clear; send attack packet
+        }
     }
 }
