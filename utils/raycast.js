@@ -2,31 +2,29 @@ const Vec3 = require("vec3")
 const Line3 = require("line3")
 const Iterator = require("./iterator")
 
-function canAttack(yaw, pitch, client, target) {
-    let radius = client.entity.position.distanceTo(target.position)
-
+function canAttack(yaw, pitch, range, client, entity) {
     // initialise the raycast
     let a, b
-    a = client.entity.position.offset(0, client.entity,height, 0)
+    a = client.entity.position.offset(0, client.entity.height, 0)
     b = a.offset(
-        Math.cos(yaw)   * radius,
-        Math.sin(pitch) * radius,
-        Math.sin(yaw)   * radius
+      - Math.sin(yaw)   * range,
+        Math.sin(pitch) * range,
+      - Math.cos(yaw)   * range
     )
 
     let ray = Line3.fromVec3(a, b)
 
     // initialise the hitbox
     let ha, hb
-    ha = target.position.minus(
-        target.width / 2,
+    ha = entity.position.offset(
+        - entity.width / 2,
         0,
-        target.width / 2
+        - entity.width / 2
     )
     hb = ha.offset(
-        target.width,
-        target.height,
-        target.width
+        entity.width,
+        entity.height,
+        entity.width
     )
 
     let ih, ib
@@ -37,16 +35,35 @@ function canAttack(yaw, pitch, client, target) {
         [hb.x, hb.y, hb.z]
     ])
 
-    // hitbox isn't visible
+    // client isn't facing the hitbox
     if (!ih) return null
 
     // check if the ray intercepts with blocks
     Iterator.iterBlocks(ray, (x, y, z) => {
+        let pos = new Vec3(x, y, z)
+        let block = client.blockAt(pos)
 
+        if (block && block.boundingBox === "block") {
+            let rect = [
+                [x, y, z],
+                [x + 1, y + 1, z + 1]
+            ]
+
+            let entrance = ray.rectIntercept(rect, ray.rectFace(false))
+            let exit     = ray.rectIntercept(rect, ray.rectFace(true))
+
+            // use at least one
+            ib = entrance ?? exit
+            return Boolean(ib)
+        }
     })
 
-    // no block obstruction; hitbox can be attacked
+    // no block obstruction; hitbox is visible
     if (!ib) return ih
 
     return null
+}
+
+module.exports = {
+    canAttack
 }
