@@ -15,8 +15,6 @@ class Melee {
         this.#VELOCITY = new Float64Array(2)
     }
 
-    // problem: angle difference not effective for working out new yaw (360 rotation when 360 -> 0 again)
-
     swing(entity, hand) {
         // get angle where player is facing
         let initial = new Float64Array(2)
@@ -95,7 +93,7 @@ function getPlugin(options) {
             client,
             config.velocity || 0.4,
             config.acceleration || 0.1,
-            config.chance || 0.2,
+            config.chance || 0.35,
             config.range || 4
         )
     }

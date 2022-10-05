@@ -1,4 +1,3 @@
-
 // returns an angle's inverse, assuming it is between 0 and 360
 function inverse(angle) {
     return angle < 0

@@ -1,7 +1,7 @@
 {
   "name": "mineflayer-melee",
   "version": "0.0.1",
-  "description": "Simulate legitimate player combat with mineflayer",
+  "description": "Simulate realistic player combat with mineflayer",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

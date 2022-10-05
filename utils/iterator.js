@@ -30,7 +30,7 @@ function iterBlocks(line, callback) {
                 if (
                     callback(
                         x + floored.a.x,
-                        y + floored.a.y, 
+                        y + floored.a.y,
                         z + floored.a.z
                     )
                 )
