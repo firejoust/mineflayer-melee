@@ -9,7 +9,11 @@
 - Simulate realistic player combat with minimal anticheat risk
 - Built-in entity hitbox and block collision detection
 - Smooth yaw/pitch rotations and no head snapping
-
+### Installation
+```bash
+# using the node package manager:
+npm install mineflayer-melee
+```
 ### Usage
 #### Loading the Plugin
 ```js
