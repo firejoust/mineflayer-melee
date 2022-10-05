@@ -1,4 +1,9 @@
 <h1 align="center">Mineflayer Melee</h1>
+<div align="center">
+    <img src="https://img.shields.io/npm/v/mineflayer-melee?style=flat-square">
+    <img src="https://img.shields.io/github/issues-raw/firejoust/mineflayer-melee?style=flat-square">
+    <img src="https://img.shields.io/github/issues-pr-raw/firejoust/mineflayer-melee?style=flat-square">
+</div>
 
 ### Features
 - Simulate realistic player combat with minimal anticheat risk
@@ -30,14 +35,14 @@ const options = {
 
 const plugin = melee.getPlugin(options)
 ```
-### API
+#### API
 ```js
 /*
     Adjusts the player's aim, and attempts to attack an entity. Swings the sword if the attack missed.
 */
 bot.melee.swing(entity, hand)
 ```
-### Example
+#### Example
 ```js
 /*
     Recommended to execute every tick for the best result
