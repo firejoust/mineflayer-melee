@@ -1,6 +1,6 @@
 {
   "name": "mineflayer-melee",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simulate realistic player combat with mineflayer",
   "main": "index.js",
   "scripts": {
