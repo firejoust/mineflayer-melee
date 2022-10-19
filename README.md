@@ -45,6 +45,11 @@ const plugin = melee.getPlugin(options)
     Adjusts the player's aim, and attempts to attack an entity. Swings the sword if the attack missed.
 */
 bot.melee.swing(entity, hand)
+
+/*
+    Resets the player's stored angular velocity
+*/
+bot.melee.reset()
 ```
 #### Example
 ```js

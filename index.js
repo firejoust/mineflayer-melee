@@ -15,6 +15,11 @@ class Melee {
         this.#VELOCITY = new Float64Array(2)
     }
 
+    reset() {
+        this.#VELOCITY[1] = 0
+        this.#VELOCITY[0] = 0
+    }
+
     swing(entity, hand) {
         // get angle where player is facing
         let initial = new Float64Array(2)
