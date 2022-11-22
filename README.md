@@ -59,5 +59,6 @@ bot.melee.reset()
 bot.on("physicsTick", () => {
     const entity = bot.nearestEntity(entity => entity.type === "player")
     if (entity) bot.melee.swing(entity)
+    else bot.melee.reset()
 })
 ```
