@@ -6,6 +6,8 @@
     <p><i>Note: this plugin is designed for legacy combat only (1.8.x and earlier)</i></p>
 </div>
 
+### Description
+This plugin attempts to achieve "realistic" PvP. "realistic" means that various measures are taken to mimic a human's mouse during melee combat. Timing is calculated per tick, so the main function should be executed 20 times a second, how it's achieved is up to the developer (either an interval or listener)
 
 ### Features
 - Simulate realistic player combat with minimal anticheat risk
