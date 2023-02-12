@@ -3,9 +3,9 @@
     <img src="https://img.shields.io/npm/v/mineflayer-melee?style=flat-square">
     <img src="https://img.shields.io/github/issues-raw/firejoust/mineflayer-melee?style=flat-square">
     <img src="https://img.shields.io/github/issues-pr-raw/firejoust/mineflayer-melee?style=flat-square">
+    <p><i>Note: this plugin is designed for legacy combat only (1.8.x and earlier)</i></p>
 </div>
 
-This plugin is designed for legacy combat (1.8.x and prior)
 
 ### Features
 - Simulate realistic player combat with minimal anticheat risk
