@@ -1,4 +1,4 @@
-<h1 align="center">Mineflayer Melee</h1>
+<h1 align="center">Mineflayer Melee (For legacy combat)</h1>
 <div align="center">
     <img src="https://img.shields.io/npm/v/mineflayer-melee?style=flat-square">
     <img src="https://img.shields.io/github/issues-raw/firejoust/mineflayer-melee?style=flat-square">
